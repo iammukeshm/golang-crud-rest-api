@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"golang-crud-rest-api/controllers"
-	"golang-crud-rest-api/infrastructure"
+	"golang-crud-rest-api/database"
 	"log"
 	"net/http"
 
@@ -19,7 +19,8 @@ func main() {
 	LoadAppConfig()
 
 	// Initialize Database
-	infrastructure.InitializeDatabase(AppConfig.Database.ConnectionString)
+	database.Connect(AppConfig.Database.ConnectionString)
+	database.Migrate()
 	
 	// Initialize the router
 	router := mux.NewRouter().StrictSlash(true)
