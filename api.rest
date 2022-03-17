@@ -1,0 +1,11 @@
+@host = localhost:8080
+
+// Create Product
+POST http://{{host}}/api/product HTTP/1.1
+content-type: application/json
+    
+{
+    "name": "test-product",
+    "description": "random-description",
+    "price": 100.00
+}
