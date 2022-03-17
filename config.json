@@ -1,7 +1,6 @@
 {
     "database":{
-        "driver":"mysql",
-        "connection_string":"mysql://root:root@localhost:3306/test"
+        "connection_string":"root:root@tcp(127.0.0.1:3306)/crud_demo"
     },
     "server":{
         "port":8080

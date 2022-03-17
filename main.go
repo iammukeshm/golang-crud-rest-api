@@ -1,17 +1,39 @@
 package main
 
 import (
+	"fmt"
 	"golang-crud-rest-api/controllers"
+	"golang-crud-rest-api/infrastructure"
+	"log"
+	"net/http"
 
 	"github.com/gorilla/mux"
+	"gorm.io/gorm"
 )
 
+var DB *gorm.DB
+
 func main() {
+
+	// Load Configurations from config.json using Viper
 	LoadAppConfig()
+
+	// Initialize Database
+	infrastructure.InitializeDatabase(AppConfig.Database.ConnectionString)
+	
+	// Initialize the router
 	router := mux.NewRouter().StrictSlash(true)
-	InitProductHandlers(router);
+
+	// Register Routes
+	RegisterProductRoutes(router)
+
+	// Start the server
+	log.Println(fmt.Sprintf("Starting Server on port %s", AppConfig.Server.Port))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%v", AppConfig.Server.Port), router))
 }
 
-func InitProductHandlers(router *mux.Router) {
+func RegisterProductRoutes(router *mux.Router) {
+	router.HandleFunc("/products", controllers.GetProducts).Methods("GET")
 	router.HandleFunc("/products/{id}", controllers.GetProductById).Methods("GET")
+	router.HandleFunc("/product", controllers.CreateProduct).Methods("POST")
 }
