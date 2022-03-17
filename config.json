@@ -1,0 +1,9 @@
+{
+    "database":{
+        "driver":"mysql",
+        "connection_string":"mysql://root:root@localhost:3306/test"
+    },
+    "server":{
+        "port":8080
+    }
+}
