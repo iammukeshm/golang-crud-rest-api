@@ -44,5 +44,9 @@ func UpdateProduct(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteProduct(w http.ResponseWriter, r *http.Request) {
-
+	w.Header().Set("Content-Type", "application/json")
+	productId := mux.Vars(r)["id"]
+	var product entities.Product
+	database.Instance.Delete(&product, productId)
+	json.NewEncoder(w).Encode("Product Deleted Successfully!")
 }
