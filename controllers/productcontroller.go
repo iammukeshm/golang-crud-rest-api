@@ -26,5 +26,17 @@ func GetProductById(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetProducts(w http.ResponseWriter, r *http.Request) {
+	var products []entities.Product
+	database.Instance.Find(&products)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(products)
+}
+
+func UpdateProduct(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func DeleteProduct(w http.ResponseWriter, r *http.Request) {
 
 }
