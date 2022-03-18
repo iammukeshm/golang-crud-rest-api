@@ -34,7 +34,13 @@ func GetProducts(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateProduct(w http.ResponseWriter, r *http.Request) {
-
+	productId := mux.Vars(r)["id"]
+	var product entities.Product
+	database.Instance.First(&product, productId)
+	json.NewDecoder(r.Body).Decode(&product)
+	database.Instance.Save(&product)	
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(product)
 }
 
 func DeleteProduct(w http.ResponseWriter, r *http.Request) {
