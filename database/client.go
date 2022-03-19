@@ -20,8 +20,7 @@ func Connect(connectionString string) {
 	log.Println("Connected to Database...")
 }
 
-func Migrate(){
-	
+func Migrate() {
 	Instance.AutoMigrate(&entities.Product{})
 	log.Println("Database Migration Completed...")
 }

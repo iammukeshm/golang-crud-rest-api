@@ -19,7 +19,7 @@ func main() {
 	LoadAppConfig()
 
 	// Initialize Database
-	database.Connect(AppConfig.Database.ConnectionString)
+	database.Connect(AppConfig.ConnectionString)
 	database.Migrate()
 	
 	// Initialize the router
@@ -29,8 +29,8 @@ func main() {
 	RegisterProductRoutes(router)
 
 	// Start the server
-	log.Println(fmt.Sprintf("Starting Server on port %s", AppConfig.Server.Port))
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%v", AppConfig.Server.Port), router))
+	log.Println(fmt.Sprintf("Starting Server on port %s", AppConfig.Port))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%v", AppConfig.Port), router))
 }
 
 func RegisterProductRoutes(router *mux.Router) {
