@@ -7,16 +7,7 @@ import (
 )
 
 type Config struct {
-	Server   ServerConfig   `mapstructure:"server"`
-	Database DatabaseConfig `mapstructure:"database"`
-}
-
-type ServerConfig struct {
-	Port string `mapstructure:"port"`
-}
-
-type DatabaseConfig struct {
-	Driver           string `mapstructure:"driver"`
+	Port           string `mapstructure:"port"`
 	ConnectionString string `mapstructure:"connection_string"`
 }
 
