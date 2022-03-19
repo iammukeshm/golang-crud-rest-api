@@ -17,11 +17,11 @@ func Connect(connectionString string) {
 		log.Fatal(err)
 		panic("Cannot connect to DB")
 	}
-	log.Println("Connected to Database..")
+	log.Println("Connected to Database...")
 }
 
 func Migrate(){
 	
 	Instance.AutoMigrate(&entities.Product{})
-	log.Println("Database Migration Completed..")
+	log.Println("Database Migration Completed...")
 }
